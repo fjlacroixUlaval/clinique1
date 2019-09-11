@@ -46,25 +46,41 @@ public class Clinic {
     private ArrayList<Patient> radiologyQueue = new ArrayList<>();
 
 
-    TriageType triageType;
+    TriageType doctorTriageType;
+    TriageType radiologyTriageType;
 
-    public Clinic(TriageType triageType) {
+    public Clinic(TriageType doctorTriageType,TriageType radiologyTriageType) {
 
-        this.triageType = triageType;
+        this.doctorTriageType = doctorTriageType;
+        this.radiologyTriageType = radiologyTriageType;
 
     }
 
     public void triagePatient(Patient patient) {
 
 
-        if(triageType == TriageType.FIFO) {
+        if (patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN) {
+
+            if(radiologyTriageType == TriageType.FIFO) {
+                radiologyQueue.add(patient);
+
+            }else if(radiologyTriageType == TriageType.GRAVITY){
+
+                if(patient.getGravity() >= 5){
+                    radiologyQueue.add(0,patient);
+                }
+                else{
+                    radiologyQueue.add(patient);
+                }
+            }
+        }
+
+        if(doctorTriageType == TriageType.FIFO) {
 
             doctorQueue.add(patient);
 
-            if (patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN) {
-                radiologyQueue.add(patient);
-            }
-        }else if(triageType == TriageType.GRAVITY){
+
+        }else if(doctorTriageType == TriageType.GRAVITY){
 
             if(patient.getGravity() >= 5){
                 doctorQueue.add(0,patient);
@@ -73,11 +89,9 @@ public class Clinic {
                 doctorQueue.add(patient);
             }
 
-            if (patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN) {
-                radiologyQueue.add(patient);
-            }
-
         }
+
+
     }
 
 
