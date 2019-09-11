@@ -115,7 +115,53 @@ public class ClinicTest {
 
     }
 
+    @Test
+    public void ignoreLowGravityPatientDoctorFIFORadiologyFIFO()
+    {
+        Clinic clinic = new Clinic(Clinic.TriageType.FIFO, Clinic.TriageType.FIFO);
+        Clinic.Patient patient = new Clinic.Patient("Alice", 1, Clinic.VisibleSymptom.MIGRAINE);
+        clinic.triagePatient(patient);
 
+        assertEquals(clinic.getDoctorQueue().size(),0,"doctorQueue should have length 0");
+        assertEquals(clinic.getRadiologyQueue().size(),0,"radiologyQueue should have length 0");
+
+    }
+
+    @Test
+    public void ignoreLowGravityPatientDoctorFIFORadiologyGravity()
+    {
+        Clinic clinic = new Clinic(Clinic.TriageType.FIFO, Clinic.TriageType.GRAVITY);
+        Clinic.Patient patient = new Clinic.Patient("Alice", 1, Clinic.VisibleSymptom.MIGRAINE);
+        clinic.triagePatient(patient);
+
+        assertEquals(clinic.getDoctorQueue().size(),0,"doctorQueue should have length 0");
+        assertEquals(clinic.getRadiologyQueue().size(),0,"radiologyQueue should have length 0");
+
+    }
+
+    @Test
+    public void ignoreLowGravityPatientDoctorGravityRadiologyFIFO()
+    {
+        Clinic clinic = new Clinic(Clinic.TriageType.GRAVITY, Clinic.TriageType.FIFO);
+        Clinic.Patient patient = new Clinic.Patient("Alice", 1, Clinic.VisibleSymptom.MIGRAINE);
+        clinic.triagePatient(patient);
+
+        assertEquals(clinic.getDoctorQueue().size(),0,"doctorQueue should have length 0");
+        assertEquals(clinic.getRadiologyQueue().size(),0,"radiologyQueue should have length 0");
+
+    }
+
+    @Test
+    public void ignoreLowGravityPatientDoctorGravityRadiologyGravity()
+    {
+        Clinic clinic = new Clinic(Clinic.TriageType.GRAVITY, Clinic.TriageType.GRAVITY);
+        Clinic.Patient patient = new Clinic.Patient("Alice", 1, Clinic.VisibleSymptom.MIGRAINE);
+        clinic.triagePatient(patient);
+
+        assertEquals(clinic.getDoctorQueue().size(),0,"doctorQueue should have length 0");
+        assertEquals(clinic.getRadiologyQueue().size(),0,"radiologyQueue should have length 0");
+
+    }
 
 
 }

@@ -35,6 +35,10 @@ public class CommunityCenter {
     public void triagePatient(Clinic.Patient patient) {
 
 
+        if(patient.getGravity() == 1){
+            return;
+        }
+
         if(nurseTriageType == Clinic.TriageType.FIFO){
 
             nurseQueue.add(patient);

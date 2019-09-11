@@ -20,4 +20,10 @@ Combien de comportements possède la classe Clinic? Combien de tests y a-t-il? E
 
 Dans la classe ClinicTest, on a 2 comportements par file d'attente, ce qui fait 4 comportements totaux.
  On a 7 tests. Pour la classe CommunityCenter, on a seulement 2 comportements et 2 tests. Étant donné qu'il n'y a pas de combinaisons possibles dans le CommunityCenter, on a beaucoup moins de comportements totaux et donc de tests.
- 
+
+Étape 5:
+
+Combien de tests avez-vous ajoutés? Versus combien de ligne de code de production? Pourquoi?
+
+Deux tests ont été ajoutés dans les tests du CommunityCenter et quatre tests ont été ajoutés dans les tests de la classe Clinic.
+Au total, 3 lignes ont été ajoutées dans chacune des classes. On peut voir que même des petits features peuvent ajouter beaucoup de logique de test.

@@ -58,6 +58,9 @@ public class Clinic {
 
     public void triagePatient(Patient patient) {
 
+        if(patient.getGravity() == 1){
+            return;
+        }
 
         if (patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN) {
 

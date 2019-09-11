@@ -40,4 +40,27 @@ public class CommunityCenterTest {
     }
 
 
+    @Test
+    public void ignoreLowGravityPatientFIFO()
+    {
+        CommunityCenter communityCenter = new CommunityCenter(Clinic.TriageType.FIFO);
+        Clinic.Patient patient = new Clinic.Patient("Alice", 1, Clinic.VisibleSymptom.MIGRAINE);
+        communityCenter.triagePatient(patient);
+
+        assertEquals(communityCenter.getNurseQueue().size(),0,"NurseQueue should have length 0");
+
+    }
+
+    @Test
+    public void ignoreLowGravityPatientGravity()
+    {
+        CommunityCenter communityCenter = new CommunityCenter(Clinic.TriageType.GRAVITY);
+        Clinic.Patient patient = new Clinic.Patient("Alice", 1, Clinic.VisibleSymptom.MIGRAINE);
+        communityCenter.triagePatient(patient);
+
+        assertEquals(communityCenter.getNurseQueue().size(),0,"NurseQueue should have length 0");
+
+    }
+
+
 }
