@@ -10,7 +10,8 @@ public class Clinic {
 
 
     public enum TriageType {
-        FIFO
+        FIFO,
+        GRAVITY
     }
 
     public enum VisibleSymptom {
@@ -44,21 +45,39 @@ public class Clinic {
 
     private ArrayList<Patient> radiologyQueue = new ArrayList<>();
 
-    public Clinic() {
 
+    TriageType triageType;
 
+    public Clinic(TriageType triageType) {
+
+        this.triageType = triageType;
 
     }
 
     public void triagePatient(Patient patient) {
 
 
-        doctorQueue.add(patient);
+        if(triageType == TriageType.FIFO) {
 
-        if(patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN){
-            radiologyQueue.add(patient);
+            doctorQueue.add(patient);
+
+            if (patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN) {
+                radiologyQueue.add(patient);
+            }
+        }else if(triageType == TriageType.GRAVITY){
+
+            if(patient.getGravity() >= 5){
+                doctorQueue.add(0,patient);
+            }
+            else{
+                doctorQueue.add(patient);
+            }
+
+            if (patient.getVisibleSymptom() == VisibleSymptom.BROKEN_BONE || patient.getVisibleSymptom() == VisibleSymptom.SPRAIN) {
+                radiologyQueue.add(patient);
+            }
+
         }
-
     }
 
 
