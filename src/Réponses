@@ -27,3 +27,11 @@ Combien de tests avez-vous ajoutés? Versus combien de ligne de code de producti
 
 Deux tests ont été ajoutés dans les tests du CommunityCenter et quatre tests ont été ajoutés dans les tests de la classe Clinic.
 Au total, 3 lignes ont été ajoutées dans chacune des classes. On peut voir que même des petits features peuvent ajouter beaucoup de logique de test.
+
+
+
+LABO 2:
+
+Étape 3:
+Comment est-ce possible d’avoir un seul test? Comment est-ce relié au nombre de comportements du centre communautaire?
+Le centre communautaire n'a qu'un seul comportement. Tout le reste de la logique de triage et d'ajout des patients a été transférée aux autres classes. Il faut cependant avoir un deuxième test pour s'assurer qu'un patient de gravité 1 ne sera pas traité.
